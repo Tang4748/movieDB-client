@@ -23,7 +23,7 @@ node_modules
 .cache
 .parcel-cache
 package-lock.json
-
+/dist
 # Windows shortcuts
 *.lnk
 
