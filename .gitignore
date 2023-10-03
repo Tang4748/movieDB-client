@@ -26,4 +26,5 @@ package-lock.json
 /dist
 # Windows shortcuts
 *.lnk
-
+.map 
+package-lock.json
