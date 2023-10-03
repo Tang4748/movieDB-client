@@ -24,7 +24,10 @@ node_modules
 .parcel-cache
 package-lock.json
 /dist
+.map
+.css
 # Windows shortcuts
 *.lnk
 .map 
+
 package-lock.json
