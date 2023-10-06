@@ -17,7 +17,7 @@ export const SignupView = () => { //exporting signup-view component
             Birthday: birthday
         };
 
-        fetch ("https://myflixdb2-49f7e3987c2e.herokuapp.com", { //fetch request
+        fetch ("https://myflixdb2-49f7e3987c2e.herokuapp.com/users", { //fetch request
             method: "POST", //POST request
             body: JSON.stringify(data), //JSON stringified data
             headers: {
@@ -43,8 +43,8 @@ export const SignupView = () => { //exporting signup-view component
                     value={username} //value prop
                     onChange={(e) => setUsername(e.target.value)} //onChange event handler
                     required //required field
-                    minlength="5" //minimum length of 5 characters
-                    maxlength="15" //maximum length of 15 characters
+                    minLength="5" //minimum length of 5 characters
+                    maxLength="15" //maximum length of 15 characters
                 />
             </label>
             <label>
