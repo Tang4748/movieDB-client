@@ -12,50 +12,31 @@ export const MainView = () => { // MainView component
     const [user, setUser] = useState(storedUser? storedUser : null); //useState hook to store the state of the user
     const [token, setToken] = useState(storedToken? storedToken : null); //useState hook to store the state of the token
 
-    useEffect(() => { //useEffect hook to retrieve the list of movies when the component is mounted
-        if (!token) //if the token is false, returns
-            return;
-        
-        fetch("https://myflixdb2-49f7e3987c2e.herokuapp.com/movies", { //fetches the list of movies from the API
-            headers: { Authorization: `Bearer ${token}` }//passes the token to the API call
+    useEffect(() => {
+        //useEffect hook to retrieve the list of movies when the component is mounted
+        if (!token)
+          //if the token is false, returns
+          return;
+    
+        fetch("https://myflixdb2-49f7e3987c2e.herokuapp.com/movies", {
+          //fetches the list of movies from the API
+          headers: { Authorization: `Bearer ${token}` }, //passes the token to the API call
         })
-            .then((response) => { 
-                if ( response.ok ) { 
-                    return response.json(); //returns the response as JSON if the response is ok
-                }
-                else {
-                    throw Error(response.statusText); //throws an error if the response is not ok
-                }
-            }) //converts the response to JSON format
-            .then((data) => { 
-                
-                //maps over the list
-                const moviesFromApi = data.map((movies) => { //maps over the list
-                
-                //returns a list of objects with the properties listed below
-                return {
-                    _id: movies._id, //movie._id prop
-                    Title: movies.Title, //movie.Title prop
-                    Description: movies.Description, //movie.Description prop
-                    Genre: {
-                        Name: movies.Genre.Name, //movie.Genre.Name prop
-                        Description: movies.Genre.Description //movie.Genre.Description prop
-                    },
-                    Director: { //movie.Director prop
-                        Name: movies.Director.Name, //movie.Director.Name prop
-                        Bio: movies.Director.Bio, //movie.Director.Bio prop
-                    },
-                    ImagePath: movies.ImagePath, //movie.ImagePath prop
-                    Featured: movies.Featured //movie.Featured prop
-                };
-                });
-                
-                setMovies(moviesFromApi); //setMovies prop
-            })
-            .catch((error) => { //logs any errors
-                console.log('Error retrieving movies:', error); //logs any errors
-            });
-    }, [token]);
+          .then((response) => {
+            if (response.ok) {
+              return response.json(); //returns the response as JSON if the response is ok
+            } else {
+              throw Error(response.statusText); //throws an error if the response is not ok
+            }
+          }) //converts the response to JSON format
+          .then((data) => {
+            setMovies(data); //setMovies prop
+          })
+          .catch((error) => {
+            //logs any errors
+            console.log("Error retrieving movies:", error); //logs any errors
+          });
+      }, [token]);
 
     if (!user) {
         return (
