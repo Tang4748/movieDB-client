@@ -1,4 +1,9 @@
-$color: blue;
+$color: rgb(53, 8, 77);
+$color-bg: rgba(255, 255, 255, 0.818);
+
+@import '~bootstrap/scss/bootstrap.scss'; // Import Bootstrap styles
+@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss'; // Import Font Awesome styles
+
 
 .my-flix {
   color: $color;
