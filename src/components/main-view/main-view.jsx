@@ -3,6 +3,9 @@ import { MovieCard } from '../movie-card/movie-card'; //Import statement for Mov
 import { MovieView } from '../movie-view/movie-view'; //Import statement for MovieView
 import { LoginView } from '../login-view/login-view';//Import statement for LoginView
 import { SignupView } from '../signup-view/signup-view'; //Import statement for SignupView
+import {NavbarComponent} from '../nav-bar/nav-bar'; //Import statement for NavbarComponent
+import './main-view.scss'; //Import statement for MainView styling
+
 
 export const MainView = () => { // MainView component
     const storedUser = JSON.parse(localStorage.getItem('user')); //stores the user in localStorage
@@ -59,47 +62,94 @@ export const MainView = () => { // MainView component
 
     if (!user) {
         return (
-            <>
-                <LoginView onLoggedIn={(user, token) => { //If the user is false, returns the LoginView component
-                    setUser(user); //setUser prop
-                    setToken(token); //setToken prop
-                }} />
-                or
-                <SignupView />
-            </>
+          <div>
+            <NavbarComponent />
+            {/* empty space at the top so navbar doesnt block content) */}
+            <Row className="mt-5">
+              <Col className="mt-5 col-12"></Col>
+              <Col className="mt-5 col-12"></Col>
+              <Col className="mt-5 col-12"></Col>
+            </Row>
+            <Container>
+              <Row className="justify-content-md-center">
+                <Col className="text-center fs-2 m-5">
+                  Studio Ghibli Movies Archive
+                </Col>
+              </Row>
+            </Container>
+            <SignupView />
+            <LoginView
+              onLoggedIn={(user, token) => {
+                setUser(user);
+                setToken(token);
+              }}
+            />
+          </div>
         );
-    }
-
-    if (selectedMovie) {
-        return <MovieView movie={selectedMovie} onBackClick={() => //If the selected movie is true, returns the MovieView component
-            setSelectedMovie(null) //setSelectedMovie prop
-            }
-        />; //If the selected movie is true, returns the MovieView component
-    }
-
-    if (movies.length === 0) { //If the list of movies is empty, returns this message
-        return <div className='main-view'>The list is empty!</div>; //If the list of movies is empty, returns this message
-    }
+      }
+      if (selectedMovie) {
+        const similarMovies = movies.filter((otherMovie) => {
+          return (
+            otherMovie.genre.name === selectedMovie.genre.name &&
+            otherMovie._id !== selectedMovie._id
+          );
+        });
     
-    return (//Returns the list of movies
-        <div>
-            <button onClick={() => { //onClick event handler
-                setUser(null); //setUser prop
-                setToken(null); //setToken prop
-                localStorage.clear(); //clears localStorage
-            }}>
-                Logout
-            </button>
-
-            {movies.map((movie) => { //Maps over the list of movies
-                return <MovieCard 
-                key={movie.id} //Key prop
-                movie={movie} //Movie prop
-                onMovieClick={(newSelectedMovie) => { //onMovieClick prop
-                    setSelectedMovie(newSelectedMovie); //setSelectedMovie prop
-                }}
-                />;
+        return (
+          <>
+            <NavbarComponent />
+            <MovieView
+              movie={selectedMovie}
+              onBackClick={() => setSelectedMovie(null)}
+            />
+            <SimilarMovies
+              movies={similarMovies}
+              onMovieClick={(newSelectedMovie) => {
+                setSelectedMovie(newSelectedMovie);
+              }}
+            />
+          </>
+        );
+      }
+    
+      return (
+        <>
+          <NavbarComponent />
+          {/* empty space at the top of the page ( so navbar doesnt block content) */}
+          <Row className="mt-5">
+            <Col className="mt-5 col-12"></Col>
+            <Col className="mt-5 col-12"></Col>
+            <Col className="mt-5 col-12"></Col>
+          </Row>
+          <Row className="mb-5 justify-content-center">
+            {movies.map((movie) => {
+              return (
+                <Col
+                  key={movie._id}
+                  className="mb-5 col-xl-3 col-lg-4 col-md-6 col-sm-12 card-size "
+                >
+                  <MovieCard
+                    movie={movie}
+                    onMovieClick={(newSelectedMovie) => {
+                      setSelectedMovie(newSelectedMovie);
+                    }}
+                  />
+                </Col>
+              );
             })}
-        </div>
-    );
-};
+          </Row>
+          <Button
+            onClick={() => {
+              setUser(null);
+              setToken(null);
+              localStorage.clear();
+            }}
+            className="m-3 text-align-center"
+          >
+            logout
+          </Button>
+        </>
+      );
+    };
+    
+    export default MainView;
