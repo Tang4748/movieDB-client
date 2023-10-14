@@ -96,7 +96,7 @@ export const MainView = () => { // MainView component
       return (
         <>
           <NavbarComponent />
-          {/* empty space at the top of the page ( so navbar doesnt block content) */}
+          {/* empty space at the top of the page ( so nav-bar doesnt block content) */}
           <Row className="mt-5">
             <Col className="mt-5 col-12"></Col>
             <Col className="mt-5 col-12"></Col>
