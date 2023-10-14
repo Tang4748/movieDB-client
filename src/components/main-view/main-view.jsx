@@ -12,7 +12,7 @@ export const MainView = () => { // MainView component
     const [user, setUser] = useState(null); //useState hook to store the state of the user
 
     useEffect(() => { //useEffect hook to retrieve the list of movies when the component is mounted
-        fetch('https://themovieapi.herokuapp.com/movies') //fetches the list of movies from the API
+        fetch('https://myflixdb2-49f7e3987c2e.herokuapp.com/movies') //fetches the list of movies from the API
             .then((response) => response.json()) //converts the response to JSON format
             .then((data) => { //stores the data in a state
                 
