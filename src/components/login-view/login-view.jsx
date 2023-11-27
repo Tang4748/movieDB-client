@@ -1,6 +1,6 @@
 import { useState } from 'react'; //useState hook
 import { Form, Button } from 'react-bootstrap'; //importing Form and Button from react-bootstrap
-
+import { CardGroup, Col, Row, Container, Card } from 'react-bootstrap';
 
 export const LoginView = ({ onLoggedIn }) => { //exporting login-view component
     const [username, setUsername] = useState(""); //useState hook to store the state of the username    
@@ -39,30 +39,56 @@ export const LoginView = ({ onLoggedIn }) => { //exporting login-view component
     };
 
     return (
-        <Form onSubmit={handleSubmit}>
-            <label>
-                Username:
-                <input 
-                type="text" 
-                value={username} //value prop
-                onChange={(e)=> setUsername(e.target.value)} //onChange event handler
-                minLength="5" //minimum length of 5 characters
-                maxLength="15" //maximum length of 15 characters
-                required //required field
-            />
-            </label>
-            <label>
-                Password:
-                <input 
-                type="password" 
-                value={password} //value prop
-                onChange={(e)=> setPassword(e.target.value)} //onChange event handler
-                required //required field
-                />
-            </label>
-            <Button type="submit">
-                Submit
-            </Button>
-        </Form>
-    );
-};
+        <Container className="margin-top-custom">
+          <Row className="justify-content-md-center">
+            <Col md={5}>
+              <CardGroup className="">
+                <Card className="mb-5 border border-0">
+                  <Card.Body>
+                    <Card.Title>Already have an account? Login:</Card.Title>
+                    <Form onSubmit={handleSubmit}>
+                      <Form.Group>
+                        <Form.Label>
+                          username:
+                          <Form.Control
+                            type="text"
+                            value={username}
+                            onChange={(e) => {
+                              setUsername(e.target.value);
+                            }}
+                            required
+                            placeholder="enter your username"
+                          />
+                        </Form.Label>
+                      </Form.Group>
+                      <Form.Group>
+                        <Form.Label>
+                          password:
+                          <Form.Control
+                            type="password"
+                            value={password}
+                            onChange={(e) => {
+                              setPassword(e.target.value);
+                            }}
+                            required
+                            placeholder="enter your password"
+                          />
+                        </Form.Label>
+                      </Form.Group>
+                      <Button
+                        variant="primary"
+                        type="submit"
+                        onClick={handleSubmit}
+                        className="text-white"
+                      >
+                        submit
+                      </Button>
+                    </Form>{" "}
+                  </Card.Body>
+                </Card>
+              </CardGroup>
+            </Col>
+          </Row>
+        </Container>
+      );
+    };
