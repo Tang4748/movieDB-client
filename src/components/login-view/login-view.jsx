@@ -39,45 +39,56 @@ export const LoginView = ({ onLoggedIn }) => { //exporting login-view component
     };
 
     return (
-        <Container>
-            <Row className="justify-content-md-center">
-                <Col md={5}>
-                    <CardGroup>
-                        <Card className="mb-5">
-                            <Card.Title>
-                                Please Login:
-                            </Card.Title>
-                        </Card>
-                            <Form onSubmit={handleSubmit}>
-                            <Form.Group controlId="formUsername">
-                                <Form.Label>Username:</Form.Label>
-                                <Form.Control 
-                                    type="text" 
-                                    placeholder="Enter your username" 
-                                    value={username} //value prop
-                                    onChange={(e) => setUsername(e.target.value)} //onChange event handler
-                                    required
-                                    minLength= "3"
-                                />
-                            </Form.Group>
-                            <Form.Group controlId="formPassword">
-                                    <Form.Label>Password:</Form.Label>
-                                    <Form.Control
-                                        type="password"
-                                        placeholder="Enter your password"
-                                        value={password} //value prop
-                                        onChange={(e) => setPassword(e.target.value)} //onChange event handler
-                                        required
-                                        minLength="5"
-                                    />
-                                </Form.Group>
-                            <Button variant="primary" type="submit">
-                                Submit
-                            </Button>
-                            </Form>
-                    </CardGroup>
-                </Col>
-            </Row>
+        <Container className="margin-top-custom">
+          <Row className="justify-content-md-center">
+            <Col md={5}>
+              <CardGroup className="">
+                <Card className="mb-5 border border-0">
+                  <Card.Body>
+                    <Card.Title>Already have an account? Login:</Card.Title>
+                    <Form onSubmit={handleSubmit}>
+                      <Form.Group>
+                        <Form.Label>
+                          username:
+                          <Form.Control
+                            type="text"
+                            value={username}
+                            onChange={(e) => {
+                              setUsername(e.target.value);
+                            }}
+                            required
+                            placeholder="enter your username"
+                          />
+                        </Form.Label>
+                      </Form.Group>
+                      <Form.Group>
+                        <Form.Label>
+                          password:
+                          <Form.Control
+                            type="password"
+                            value={password}
+                            onChange={(e) => {
+                              setPassword(e.target.value);
+                            }}
+                            required
+                            placeholder="enter your password"
+                          />
+                        </Form.Label>
+                      </Form.Group>
+                      <Button
+                        variant="primary"
+                        type="submit"
+                        onClick={handleSubmit}
+                        className="text-white"
+                      >
+                        submit
+                      </Button>
+                    </Form>{" "}
+                  </Card.Body>
+                </Card>
+              </CardGroup>
+            </Col>
+          </Row>
         </Container>
-);
-}
+      );
+    };
