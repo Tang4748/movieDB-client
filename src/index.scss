@@ -1,5 +1,10 @@
-$color: steelblue;
+$color: rgb(53, 8, 77);
+$color-bg: rgba(255, 255, 255, 0.818);
+
+
 
 .my-flix {
   color: $color;
 }
+
+@import '~bootstrap/scss/bootstrap.scss'; // Import Bootstrap styles
