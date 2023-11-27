@@ -102,4 +102,4 @@ export const MainView = () => { // MainView component
             })}
         </div>
     );
-};
+}; 
