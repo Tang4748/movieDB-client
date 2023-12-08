@@ -1,80 +1,91 @@
-import{ useState } from 'react'; //importing useState
-import { Form, Button } from 'react-bootstrap'; //importing Form and Button from react-bootstrap
+import { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
-export const SignupView = () => { //exporting signup-view component
-    const [username, setUsername] = useState(""); //useState hook to store the state of the username
-    const [password, setPassword] = useState(""); //useState hook to store the state of the password
-    const [email, setEmail] = useState(""); //useState hook to store the state of the email
-    const [birthday, setBirthday] = useState(""); //useState hook to store the state of the birthday
-    
-    const handleSubmit = (event) => { //handleSubmit function
-        event.preventDefault(); //prevents the default refresh of the page
+export const SignupView = () => {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
+    const [birthday, setBirthday] = useState("");
 
-        const data = { //data object
+    const handleSubmit = (event) => {
+        // this prevents the default behavior of the form which is to reload the entire page
+        event.preventDefault();
+
+        const data = {
             Username: username,
             Password: password,
             Email: email,
             Birthday: birthday
         };
 
-        fetch ("https://myflixdb2-49f7e3987c2e.herokuapp.com/users", { //fetch request
-            method: "POST", //POST request
-            body: JSON.stringify(data), //JSON stringified data
+        fetch(`https://myflixdb2-49f7e3987c2e.herokuapp.com/users`, {
+            method: "POST",
+            body: JSON.stringify(data),
             headers: {
-                "Content-Type": "application/json" //content type
+                "Content-Type": "application/json"
             }
-        }).then((response) => { //then response
-            if (response.ok) { //if response is ok
-                alert("Signup successful"); //alert
-                window.location.reload(); //reloads the page
-            } else { //else
-                alert("Signup failed"); //alert
+        }).then(async (response) => {
+            console.log(data)
+            if (response.ok) {
+                alert("Signup successful");
+                window.location.reload();
+            } else if (username.length < 5) {
+                alert("Username must be 5 characters or longer.");
+            } else if (password === "") {
+                alert("You have to enter a password.");
+            } else if (email.includes("@") === false) {
+                alert("Please enter a valid email adress.")
+            }else {
+                alert("Signup failed");
             }
+        }).catch(error => {
+            console.error('Error: ', error);
         });
     };
 
-
     return (
-        <Form onSubmit= {handleSubmit}>
-            <label>
-                Username:
-                <input
-                    type="text"
-                    value={username} //value prop
-                    onChange={(e) => setUsername(e.target.value)} //onChange event handler
-                    required //required field
-                    minLength="5" //minimum length of 5 characters
-                    maxLength="15" //maximum length of 15 characters
+        <Form onSubmit={handleSubmit} className="mt-5">
+            <Form.Group controlId="formName">
+                <Form.Label>New User? Signup!</Form.Label>
+            </Form.Group>
+            <Form.Group controlId="formUsername">
+                <Form.Label>Username:</Form.Label>
+                <Form.Control
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+                minLength="5"
                 />
-            </label>
-            <label>
-                Password:
-                <input
-                    type="password"
-                    value={password} //value prop
-                    onChange={(e) => setPassword(e.target.value)} //onChange event handler
-                    required //required field
+            </Form.Group>
+            <Form.Group controlId="formPassword">
+                <Form.Label>Password:</Form.Label>
+                <Form.Control
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
                 />
-            </label>
-            <label>
-                Email:
-                <input
-                    type="email"
-                    value={email} //value prop
-                    onChange={(e) => setEmail(e.target.value)} //onChange event handler 
-                    required //required field
+            </Form.Group>
+            <Form.Group controlId="formEmail">
+                <Form.Label>Email:</Form.Label>
+                <Form.Control
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
                 />
-            </label>
-            <label>
-                Birthday:
-                <input
-                    type="date"
-                    value={birthday} //value prop
-                    onChange={(e) => setBirthday(e.target.value)} //onChange event handler
-                    required //required field
+            </Form.Group>
+            <Form.Group controlId="formBirthday">
+                <Form.Label>Birthday:</Form.Label>
+                <Form.Control
+                type="date"
+                value={birthday}
+                onChange={(e) => setBirthday(e.target.value)}
                 />
-            </label>
-            <Button type="submit">Submit</Button>
+            </Form.Group>
+            <Button type="submit" onClick={handleSubmit} className="mt-2">Submit</Button>
         </Form>
     );
 };
