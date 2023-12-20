@@ -40,6 +40,7 @@ export const LoginView = ({ onLoggedIn }) => { //exporting login-view component
 
     return (
         <Container className="margin-top-custom">
+          <Row className="justify-content-md-center">
             <Form.Group controlId="formName" className='justify-content-md-center'>
                 <Form.Label>Already Have An Account? Signin!</Form.Label>
             </Form.Group>
@@ -81,6 +82,7 @@ export const LoginView = ({ onLoggedIn }) => { //exporting login-view component
                         submit
                       </Button>
                     </Form>{" "}
+                  </Row>
         </Container>
       );
     };
