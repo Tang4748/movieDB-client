@@ -1,0 +1,9 @@
+$color: rgb(53, 8, 77);
+
+@import '~bootstrap/scss/bootstrap.scss';
+
+.login-title {
+  display: block;
+  color: $color;
+  font-size: 8vw;
+}
