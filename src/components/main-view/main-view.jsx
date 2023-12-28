@@ -25,7 +25,7 @@ export const MainView = () => {
             return;
         }
 
-        fetch("https://myflixdb2-49f7e3987c2e.herokuapp.com/movies", {
+        fetch('https://myflixdb2-49f7e3987c2e.herokuapp.com/movies', {
             headers: { Authorization: `Bearer ${token}`}
         })
             .then((response) => response.json())
@@ -53,7 +53,7 @@ export const MainView = () => {
     // Add Favorite Movie
     const addFav = (id) => {
 
-        fetch(`https://my-movies-api-23e4e5dc7a5e.herokuapp.com/users/${user.Username}/movies/${id}`, {
+        fetch(`https://myflixdb2-49f7e3987c2e.herokuapp.com/users/${user.Username}/movies/${id}`, {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${token}`
@@ -195,6 +195,24 @@ export const MainView = () => {
                                             <option value="Musical">Musical</option>
                                             <option value="Fantasy">Fantasy</option>
                                             <option value="Thriller">Thriller</option>
+                                            <option value="Action">Action</option>
+                                            <option value="Drama">Drama</option>
+                                            <option value="Romance">Romance</option>
+                                            <option value="Comedy">Comedy</option>
+                                            <option value="Adventure">Adventure</option>
+                                            <option value="Sci-Fi">Sci-Fi</option>
+                                            <option value="Crime">Crime</option>
+                                            <option value="Animation">Animation</option>
+                                            <option value="Family">Family</option>
+                                            <option value="Mystery">Mystery</option>
+                                            <option value="War">War</option>
+                                            <option value="Western">Western</option>
+                                            <option value="History">History</option>
+                                            <option value="Documentary">Documentary</option>
+                                            <option value="Sport">Sport</option>
+                                            <option value="Biography">Biography</option>
+                                            <option value="Music">Music</option>
+                                            <option value="News">News</option>
                                         </Form.Select>
                                     </Form>
                                     {movies.filter((movie) => {
