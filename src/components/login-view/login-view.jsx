@@ -42,7 +42,7 @@ export const LoginView = ({ onLoggedIn }) => { //exporting login-view component
         <Container className="margin-top-custom">
           <Row className="justify-content-md-center">
             <Form.Group controlId="formName" className='justify-content-md-center'>
-                <Form.Label>Already Have An Account? Signin!</Form.Label>
+                <Form.Label>Already Have An Account? Sign in!</Form.Label>
             </Form.Group>
                     <Form onSubmit={handleSubmit}>
                       <Form.Group>
