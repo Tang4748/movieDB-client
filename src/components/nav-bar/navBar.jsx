@@ -5,7 +5,7 @@ export const NavagationBar = ({ user, onLoggedOut }) => {
     return(
         <Navbar bg="dark" expand="lg" fixed="top"> 
             <Container>
-                <Navbar.Brand as={Link} to="/" style={{ color: "rgb(53, 8, 77)", fontWeight: "bold" }}>
+                <Navbar.Brand as={Link} to="/" style={{ color: "rgb(129, 41, 176)", fontWeight: "bold" }}>
                     MyMovies
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />

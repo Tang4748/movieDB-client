@@ -3,12 +3,13 @@ import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view.jsx";
 import { SignupView } from "../signup-view/signup-view.jsx";
-import { NavagationBar } from "../nav-bar/navbar.jsx";
+import { NavagationBar } from "../nav-bar/navBar.jsx";
 import { ProfileView } from "../profile-view/profile-view.jsx";
 import "./main-view.scss";
 import { Row } from "react-bootstrap";
 import { Col, Form, Button } from "react-bootstrap";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+
 
 export const MainView = () => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
