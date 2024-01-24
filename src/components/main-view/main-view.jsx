@@ -190,7 +190,7 @@ export const MainView = () => {
                                         aria-label="Search" 
                                         />
                                         <Form.Select className="ms-1 ms-md-3 w-25" aria-label="Default select genre" onChange={(e) => setSelectedGenre(e.target.value)}>
-                                            <option value="" selected>Search by genre</option>
+                                            <option value="" selected>All Genres</option>
                                             <option value="Comedy Horror">Comedy Horror</option>
                                             <option value="Horror">Horror</option>
                                             <option value="Musical">Musical</option>
