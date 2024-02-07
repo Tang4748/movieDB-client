@@ -27209,7 +27209,7 @@ const MainView = ()=>{
     // Connect App to API with Hook
     (0, _react.useEffect)(()=>{
         if (!token) return;
-        fetch("https://myflixdb4-b007f322556a.herokuapp.com/movies", {
+        fetch(`https://myflixdb4-b007f322556a.herokuapp.com/movies`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -47810,7 +47810,7 @@ const LoginView = ({ onLoggedIn })=>{
             Username: username,
             Password: password
         };
-        fetch("https://myflixdb4-b007f322556a.herokuapp.com/login", {
+        fetch(`https://myflixdb4-b007f322556a.herokuapp.com/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
