@@ -4,7 +4,7 @@ import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { BookmarkHeart, BookmarkHeartFill } from "react-bootstrap-icons";
 import inceptionImage from "../../img/inception.jpg"; // Import the images
-import theMatrixImage from "../../img/matrix.jpg"; 
+import theMatrixImage from "../../img/TheMatrix.jpg"; 
 
 export const MovieCard = ({ movie, addFav, removeFav, isFavorite }) => {
   // Map the image paths to corresponding imported images
