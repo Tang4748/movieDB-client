@@ -34,7 +34,7 @@ export const ProfileView = ({ user, movies, setUser, removeFav, addFav}) => {
             Birthday: birthday
         }
 
-        fetch(`https://myflixdb2-49f7e3987c2e.herokuapp.com/users/${user.Username}`, {
+        fetch(`https://myflixdb4-b007f322556a.herokuapp.com/users/${user.Username}`, {
             method: "PUT",
             body: JSON.stringify(data),
             headers: {

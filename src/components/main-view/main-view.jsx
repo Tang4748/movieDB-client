@@ -23,38 +23,42 @@ export const MainView = () => {
     // Connect App to API with Hook
     useEffect(() => {
         if (!token) {
-            return;
+        return;
         }
 
-        fetch('https://myflixdb2-49f7e3987c2e.herokuapp.com/movies', {
-            headers: { Authorization: `Bearer ${token}`}
+        fetch("https://myflixdb4-b007f322556a.herokuapp.com//movies", {
+        headers: { Authorization: `Bearer ${token}` },
         })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-                const moviesFromApi = data.map((movie) => {
-                    return {
-                        _id: movie._id,
-                        Title: movie.Title,
-                        ImagePath: movie.ImagePath,
-                        Description: movie.Description,
-                        Year: movie.Year,
-                        Genre: {
-                            Name: movie.Genre.Name
-                        },
-                        Director: {
-                            Name: movie.Director.Name
-                        }
-                    };
-                });
-                setMovies(moviesFromApi);
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+            const moviesFromApi = data.map((movie) => {
+            return {
+                _id: movie._id,
+                Title: movie.Title,
+                ImagePath: movie.ImagePath.replace(/ /g, "_")
+                .toLowerCase()
+                .replace(/the/g, ""),
+                Description: movie.Description,
+                Year: movie.Year,
+                Genre: {
+                Name: movie.Genre.Name,
+                },
+                Director: {
+                Name: movie.Director.Name,
+                },
+            };
             });
+            setMovies(moviesFromApi);
+        });
     }, [token]);
+
+    
 
     // Add Favorite Movie
     const addFav = (id) => {
 
-        fetch(`https://myflixdb2-49f7e3987c2e.herokuapp.com/users/${user.Username}/movies/${id}`, {
+        fetch(`https://myflixdb4-b007f322556a.herokuapp.com/users/${user.Username}/movies/${id}`, {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${token}`
@@ -79,7 +83,7 @@ export const MainView = () => {
     // Remove Favorite Movie
     const removeFav = (id) => {
 
-        fetch(`https://myflixdb2-49f7e3987c2e.herokuapp.com/users/${user.Username}/movies/${id}`, {
+        fetch(`https://myflixdb4-b007f322556a.herokuapp.com/users/${user.Username}/movies/${id}`, {
             method: "DELETE",
             headers: {
                 Authorization: `Bearer ${token}`
