@@ -59,7 +59,7 @@ export const ProfileView = ({ user, movies, setUser, removeFav, addFav}) => {
 
     // Delete User
     const handleDelete = () => {
-        fetch(`https://my-movies-api-23e4e5dc7a5e.herokuapp.com/users/${user.Username}`, {
+        fetch(`https://myflixdb4-b007f322556a.herokuapp.com/users/${user.Username}`, {
             method: "DELETE",
             headers: {
                 Authorization: `Bearer ${token}`
